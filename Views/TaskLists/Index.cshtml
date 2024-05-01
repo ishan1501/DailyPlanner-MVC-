@@ -1,0 +1,38 @@
+﻿@model IEnumerable<DailyPlanner.Models.TaskList>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <h2>Task List</h2>
+
+    <p>
+        <a href="@Url.Action("Create")" class="btn btn-primary">Create New</a>
+    </p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Task)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Task Actions">
+                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-primary">Edit</a>
+                            <a href="@Url.Action("Details", new { id = item.Id })" class="btn btn-info ms-1">Details</a> <!-- Added ms-1 for margin spacing -->
+                            <a href="@Url.Action("Delete", new { id = item.Id })" class="btn btn-danger ms-1">Delete</a> <!-- Added ms-1 for margin spacing -->
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

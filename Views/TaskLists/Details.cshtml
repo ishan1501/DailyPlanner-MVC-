@@ -1,0 +1,23 @@
+﻿@model DailyPlanner.Models.TaskList
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            Task Details
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Task: @Html.DisplayFor(model => model.Task)</h5>
+            <p class="card-text">Status: @Html.DisplayFor(model => model.Status)</p>
+        </div>
+        <div class="card-footer">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-danger" })
+        </div>
+    </div>
+</div>

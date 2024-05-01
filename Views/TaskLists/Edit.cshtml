@@ -1,0 +1,44 @@
+﻿@model DailyPlanner.Models.TaskList
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<div>
+    <div class="card">
+        <div class="card-header">
+            Edit Task
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Edit", "TaskLists", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    @Html.HiddenFor(model => model.Id)
+
+                    @Html.LabelFor(model => model.Task, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Task, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Task, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="card-footer">
+                    <input type="submit" value="Save" class="btn btn-primary" /> <!-- Changed btn-default to btn-primary for colored button -->
+                    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-danger ms-1" }) <!-- Added ms-1 for margin spacing -->
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
